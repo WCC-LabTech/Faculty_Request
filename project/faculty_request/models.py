@@ -30,7 +30,7 @@ request_status=(
 class	request(models.Model):
         faculty_Name= models.ForeignKey(User,related_name='+')
         labtech_Name=models.ForeignKey(User,related_name='+',blank=True,null=True,)
-        uploaded= models.FileField(upload_to='./uploads', blank=True,)
+        docfile= models.FileField(upload_to='documents/%Y/%m/%d', blank=True,)
 	subject=models.CharField(max_length=100)
 	description=models.TextField()
 	issued_date=models.DateTimeField(auto_now_add=True)
