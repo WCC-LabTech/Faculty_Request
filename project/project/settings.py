@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'faculty_request',
     'corsheaders',
-    'rest_framework',
+    #'rest_framework',
 
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
@@ -142,7 +142,7 @@ INSTALLED_APPS = (
 CORS_ORIGIN_ALLOW_ALL=True
 
 REST_FRAMEWORK={
-'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAdminUser',),
+#'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAdminUser',),
 'PAGINATE_BY':10
 }
 
