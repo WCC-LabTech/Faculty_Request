@@ -3,7 +3,8 @@ from django.contrib.auth.models import User,Group
 #from faculty_request.serializers import faculty_Serializer,admin_Serializer,labtech_Serializer
 from faculty_request import models
 from django.http import HttpResponse
-from django.core import serializers 
+from django.core import serializers
+from django.views.decorators.http import require_http_methods 
 
 '''class faculty_view(viewsets.ModelViewSet):
 	queryset=request.objects.all()
@@ -22,8 +23,10 @@ class labtech_view(viewsets.ModelViewSet):
         queryset=request.objects.all()
         serializer_class=labtech_Serializer;'''
 
-
-
+@require_http_methods(['POST'])
+def request_save(request):
+	
+	
 
 
 
