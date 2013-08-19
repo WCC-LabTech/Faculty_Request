@@ -14,7 +14,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'faculty_database ',                      # Or path to database file if using sqlite3.
+        'NAME': 'db.sqlite3',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -102,6 +102,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -123,6 +125,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'faculty_request',
+    'corsheaders',
+    #'rest_framework',
 
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
@@ -135,6 +139,14 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+CORS_ORIGIN_ALLOW_ALL=True
+
+REST_FRAMEWORK={
+#'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAdminUser',),
+'PAGINATE_BY':10
+}
+
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

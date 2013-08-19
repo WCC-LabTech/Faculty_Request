@@ -1,5 +1,5 @@
 from django.contrib import admin
-from faculty_request.models import request
+from faculty_request.models import requests
 
 
 
@@ -9,5 +9,5 @@ class request_admin(admin.ModelAdmin):
 	search_field=['subject','faculty_Name','labtech_Name',]
 
 
-admin.site.register(request,request_admin )
+admin.site.register(requests,request_admin )
       
