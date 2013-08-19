@@ -5,12 +5,12 @@ from faculty_request import views
 from django.contrib import admin
 admin.autodiscover()
 
-router =routers.DefaultRouter()
-router.register(r'admin',views.admin_view)
+#router =routers.DefaultRouter()
+#router.register(r'admin',views.admin_view)
 #router.register(r'labtech',views.labtech_view)
 #router.register(r'faculty',views.faculty_view)
-urlpatterns=router.urls
-"""
+#urlpatterns=router.urls
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'project.views.home', name='home'),
@@ -21,10 +21,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
    # url(r'^admin/', include(admin.site.urls)),
-    url(r'^',include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls',namespace='rest_framework')),
+   # url(r'^',include(router.urls)),
+    #url(r'^api-auth/', include('rest_framework.urls',namespace='rest_framework')),
     #url(r'^faculty/$',views.faculty_view.as_view()),
-    url(r'^admin/$',views.admin_view.as_view()),
+    url(r'^requests',views.admin_view),
     #url(r'^labtech/$',views.labtech_view.as_view()),
     
-)"""
+)

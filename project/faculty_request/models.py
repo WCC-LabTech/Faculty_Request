@@ -27,7 +27,7 @@ request_status=(
 (DELEGATED,'Delegated'),
 (COMPLETED,'Completed'),
 )
-class	request(models.Model):
+class	requests (models.Model):
         faculty_Name= models.ForeignKey(User,related_name='+')
         labtech_Name=models.ForeignKey(User,related_name='+',blank=True,null=True,)
         uploaded= models.FileField(upload_to='documents/%Y/%m/%d', blank=True,)
