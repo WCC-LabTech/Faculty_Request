@@ -24,7 +24,8 @@ urlpatterns = patterns('',
    # url(r'^',include(router.urls)),
     #url(r'^api-auth/', include('rest_framework.urls',namespace='rest_framework')),
     #url(r'^faculty/$',views.faculty_view.as_view()),
-    url(r'^requests',views.admin_view),
+    url(r'^derp/$', views.request_save),
+    url(r'^requests/',views.admin_view),
     #url(r'^labtech/$',views.labtech_view.as_view()),
     
 )
