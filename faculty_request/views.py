@@ -69,15 +69,15 @@ def admin_view(request):
 #   return HttpResponse (data,mimetype = 'aplication/json')  
 
 def user_view(request, user=None):
-	if User:
-		user = User.objects.get(pk=user)
-	else:
+	if not User:
 		user = request.user
+	else:
+		user = User.objects.get(pk=user)
 	requests = Requests.objects.filter(labtech_Name=user)
 	requests = [x.to_dict() for x in requests]
 	data = {'message': '', 'requests': requests} #simplejson.dumps(requests, indent=2)}
 	data = simplejson.dumps(data, indent=2)
-	return HttpResponse(data, status=200, mimetype = 'application/json')
+	return HttpResponse(data, status=200, mimetype='application/json')
 	
 
 @csrf_exempt
