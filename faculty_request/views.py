@@ -30,7 +30,7 @@ class labtech_view(viewsets.ModelViewSet):
 @require_http_methods(['POST'])
 def request_save(request):
     post = request.POST
-    requests = models.Requests(
+    requests = Requests(
             faculty_Name = User.objects.get(id=post["faculty_Name"]),
             labtech_Name = User.objects.get(id=post['labtech_Name']),
             subject = post['subject'],
@@ -50,7 +50,7 @@ def request_save(request):
 
 
 def admin_view(request):
-	faculty= models.Requests.objects.all()
+	faculty= Requests.objects.all()
 	data = serializers.serialize('json', faculty)
 	return HttpResponse(data, mimetype = 'application/json')
 
@@ -68,7 +68,7 @@ def admin_view(request):
 #   data=serializers.serialize('json',requests)
 #   return HttpResponse (data,mimetype = 'aplication/json')  
 
-def user_view(request, user):
+def user_view(request, user=None):
 	if User:
 		user = User.objects.get(pk=user)
 	else:
@@ -84,7 +84,7 @@ def user_view(request, user):
 @require_http_methods(['POST'])
 def request_update(request):
 	post = request.POST
-	requests= models.Requests.objects.get(id=post['id'])
+	requests= Requests.objects.get(id=post['id'])
 	requests.labtech_Name=User.objects.get(id=post["labtech_Name"])
 	requests.request_status=post['request_status']
 
