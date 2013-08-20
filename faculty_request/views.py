@@ -69,7 +69,7 @@ def admin_view(request):
 #   return HttpResponse (data,mimetype = 'aplication/json')  
 
 def user_view(request, user=None):
-	if not User:
+	if not user:
 		user = request.user
 	else:
 		user = User.objects.get(pk=user)
