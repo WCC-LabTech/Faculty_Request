@@ -26,7 +26,8 @@ urlpatterns = patterns('',
     #url(r'^faculty/$',views.faculty_view.as_view()),
     url(r'^update/$',views.request_update),
     url(r'^derp/$',views.request_save),
-    url(r'^requests/',views.admin_view),
+    url(r'^admin/',views.admin_view),
+    url(r'^user/(?P<user>[0-9]+)/$',views.user_view),
     #url(r'^labtech/$',views.labtech_view.as_view()),
     
 )

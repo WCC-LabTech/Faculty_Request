@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User,Group
 #from rest_framework import viewsets
 #from faculty_request.serializers import faculty_Serializer,admin_Serializer,labtech_Serializer
-from faculty_request import models
+from faculty_request.models import Requests
 from django.http import HttpResponse
 from django.core import serializers
 from django.views.decorators.http import require_http_methods 
@@ -16,7 +16,7 @@ from django.views.decorators.http import require_http_methods
 
 
 class admin_view(viewsets.ModelViewSet):
-        queryset=request.objects.all()
+i        queryset=request.objects.all()
         serializer_class=admin_Serializer
 
 
@@ -30,7 +30,7 @@ class labtech_view(viewsets.ModelViewSet):
 @require_http_methods(['POST'])
 def request_save(request):
     post = request.POST
-    requests = models.requests(
+    requests = models.Requests(
             faculty_Name = User.objects.get(id=post["faculty_Name"]),
             labtech_Name = User.objects.get(id=post['labtech_Name']),
             subject = post['subject'],
@@ -50,17 +50,41 @@ def request_save(request):
 
 
 def admin_view(request):
-	faculty= models.requests.objects.all()
+	faculty= models.Requests.objects.all()
 	data = serializers.serialize('json', faculty)
 	return HttpResponse(data, mimetype = 'application/json')
 
+#def user_view(request):
+#   post = request.POST
+#   requests = models.Requests(
+#	#faculty_Name = User.objects.get(id=post['faculty_Name']),
+#	labtech_Name = User.objects.get(id=request.User.id),
+#	#subject=post['subject'],
+#	#description=post['description'],
+#	#due_date=post['due_date'],
+#	#request_Type=post['request_Type'],
+#	#request_status=post['request_status'],
+#) 
+#   data=serializers.serialize('json',requests)
+#   return HttpResponse (data,mimetype = 'aplication/json')  
 
+def user_view(request, user):
+	if User:
+		user = User.objects.get(pk=user)
+	else:
+		user = request.user
+	requests = Requests.objects.filter(labtech_Name=user)
+	requests = [x.to_dict() for x in requests]
+	data = {'message': '', 'requests': requests} #simplejson.dumps(requests, indent=2)}
+	data = simplejson.dumps(data, indent=2)
+	return HttpResponse(data, status=200, mimetype = 'application/json')
+	
 
 @csrf_exempt
 @require_http_methods(['POST'])
 def request_update(request):
 	post = request.POST
-	requests= models.requests.objects.get(id=post['id'])
+	requests= models.Requests.objects.get(id=post['id'])
 	requests.labtech_Name=User.objects.get(id=post["labtech_Name"])
 	requests.request_status=post['request_status']
 

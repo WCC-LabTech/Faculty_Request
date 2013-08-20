@@ -27,7 +27,7 @@ request_status=(
     (DELEGATED,'Delegated'),
     (COMPLETED,'Completed'),
 )
-class requests (models.Model):
+class Requests (models.Model):
     faculty_Name= models.ForeignKey(User,related_name='+')
     labtech_Name=models.ForeignKey(User,related_name='+',blank=True,null=True,)
     uploaded= models.FileField(upload_to='documents/%Y/%m/%d', blank=True,)
@@ -40,4 +40,15 @@ class requests (models.Model):
 
     def __unicode__(self):
         return unicode(self.subject)
+
+    def to_dict(self):
+        return {
+            'faculty_Name': self.faculty_Name.username,
+            'labtech_Name': self.labtech_Name.username,
+            'subject': self.subject,
+            'description': self.description,
+            'issued_date': unicode(self.issued_date),
+            'due_date': unicode(self.due_date),
+        }
+            
 # Create your models here.
