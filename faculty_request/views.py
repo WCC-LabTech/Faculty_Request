@@ -56,10 +56,11 @@ def admin_view(request):
 
 
 
-
+@csrf_exempt
+@require_http_methods(['POST'])
 def request_update(request):
 	post = request.POST
-	requests= models.requests.objects.all(id=post['id'])
+	requests= models.requests.objects.get(id=post['id'])
 	requests.labtech_Name=User.objects.get(id=post["labtech_Name"])
 	requests.request_status=post['request_status']
 
