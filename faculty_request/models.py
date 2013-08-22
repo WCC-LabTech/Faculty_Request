@@ -49,6 +49,8 @@ class Requests (models.Model):
             'description': self.description,
             'issued_date': unicode(self.issued_date),
             'due_date': unicode(self.due_date),
+            'request_status': self.request_status,
+            'pk': self.pk,
         }
             
 # Create your models here.
