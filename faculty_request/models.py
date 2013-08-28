@@ -28,9 +28,9 @@ request_status=(
     (COMPLETED,'Completed'),
 )
 class Requests (models.Model):
-    faculty_Name= models.ForeignKey(User,related_name='+')
+    faculty_Name=models.ForeignKey(User,related_name='+')
     labtech_Name=models.ForeignKey(User,related_name='+',blank=True,null=True,)
-    upload= models.TextField(max_length=100, blank=True,)
+    uploaded= models.TextField(max_length=100, blank=True,)
     subject=models.CharField(max_length=100)
     description=models.TextField()
     issued_date=models.DateTimeField(auto_now_add=True)
@@ -47,8 +47,11 @@ class Requests (models.Model):
             'labtech_Name': self.labtech_Name.username,
             'subject': self.subject,
             'description': self.description,
+            'upload': self.uploaded,
             'issued_date': unicode(self.issued_date),
             'due_date': unicode(self.due_date),
+            'request_status': self.request_status,
+            'pk': self.pk,
         }
             
 # Create your models here.
