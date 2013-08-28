@@ -33,7 +33,7 @@ def request_save(request):
     requests = Requests(
             faculty_Name = User.objects.get(id=post["faculty_Name"]),
             labtech_Name = User.objects.get(id=post['labtech_Name']),
-            upload=post['upload'],
+            uploaded=post['upload'],
             subject = post['subject'],
             description = post['description'],
             due_date = post['due_date'],
